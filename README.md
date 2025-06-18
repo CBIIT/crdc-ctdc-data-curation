@@ -1,7 +1,3 @@
-[![PyPI](https://img.shields.io/pypi/status/knowledge-repo.svg)]()
-[![license](https://img.shields.io/github/license/airbnb/knowledge-repo.svg)]()
-[![PyPI version](https://badge.fury.io/py/knowledge-repo.svg)](https://badge.fury.io/py/knowledge-repo)
-[![Python](https://img.shields.io/pypi/pyversions/knowledge-repo.svg?maxAge=2592000)](https://pypi.python.org/pypi/knowledge-repo)
 
 # CRDC-CTDC Data Curation Tool
 
