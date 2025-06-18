@@ -10,7 +10,7 @@ class MetadataExtractor:
 
     def extract_specimen_id(self, filename: str) -> str:
         """
-        Extracts specimen ID from filename (first 13 characters).
+        Extracts specimen ID from filename (first 12 characters).
 
         Args:
             filename (str): Name of the file
@@ -21,7 +21,7 @@ class MetadataExtractor:
         Raises:
             ValueError: If specimen ID cannot be extracted
         """
-        specimen_id = filename[:13]  # Extract MSB-XXXXX-XX
+        specimen_id = filename[:12]  # Extract MSB-XXXXX-XX
         if not re.match(r'^MSB-\d{5}-\d{2}$', specimen_id):
             raise ValueError(f"Invalid specimen ID format in filename: {filename}")
         return specimen_id

@@ -58,6 +58,8 @@ The tool provides a command-line interface with the following commands:
    python3 -m src.main rename-files ./data/input/VCF_Report ./data/input/VCF_Report_rename
 
    python3 -m src.main rename-files ./data/input/Biomarker_Report ./data/input/Biomarker_Report_rename
+
+   python3 -m src.main generate-manifest ./data/input/VCF_Report_rename ./data/output/manifest.csv
    ```
 
 
