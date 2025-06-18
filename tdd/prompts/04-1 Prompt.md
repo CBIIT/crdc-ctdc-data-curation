@@ -1,0 +1,1 @@
+Based on the Component Tree, create the necessary code files and empty functions if needed.
