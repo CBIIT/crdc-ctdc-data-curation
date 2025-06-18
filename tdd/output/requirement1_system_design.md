@@ -2,14 +2,15 @@
 
 ## Overview of Solution
 The solution consists of two main components to handle CMB-derived data files:
-1. A file renaming system to standardize file names according to CTDC conventions
+1. A file renaming system to standardize file names according to CTDC conventions and copy them to a specified output directory
 2. A manifest generation system to create file transfer manifests with required metadata
 
 ```mermaid
 graph TB
     subgraph File Processing
         A[Input Files] --> B[File Renamer]
-        B --> C[Renamed Files]
+        B --> |Copy to| O[Output Directory]
+        O --> C[Renamed Files]
     end
     
     subgraph Manifest Generation
@@ -19,8 +20,6 @@ graph TB
         F --> G[Transfer Manifest]
     end
 
-    style A fill:#f9f,stroke:#333
-    style G fill:#9f9,stroke:#333
 ```
 
 ### Module Tree
@@ -43,12 +42,13 @@ src/
 
 ### 1. file_renamer.py
 - **Name**: file_renamer.py
-- **Purpose**: Handles the renaming of CMB data files according to CTDC naming conventions
+- **Purpose**: Handles the renaming of CMB data files according to CTDC naming conventions and manages file copying to output directory
 - **Dependencies**:
   - os
   - pathlib
   - logging
   - re
+  - shutil
 
 #### Functions/Classes:
 ```mermaid
@@ -56,6 +56,7 @@ classDiagram
     class FileRenamer {
         +rename_vcf_file(file_path: Path) str
         +rename_pdf_file(file_path: Path) str
+        +rename_and_copy(file_path: Path, output_dir: Path, dry_run: bool) tuple[str, Path]
         -_validate_filename(filename: str) bool
         -_extract_specimen_id(filename: str) str
     }
@@ -66,6 +67,10 @@ classDiagram
     - Renames VCF files according to pattern "MSB-XXXXX-XX-somatic-mutations-CTDCv1.vcf"
   - rename_pdf_file(file_path: Path) → str
     - Renames PDF files according to pattern "MSB-XXXXX-XX-genomic-report-CTDCv1.pdf"
+  - rename_and_copy(file_path: Path, output_dir: Path, dry_run: bool) → tuple[str, Path]
+    - Renames a file according to CTDC conventions and copies it to the output directory
+    - Returns tuple of (new_filename, new_file_path)
+    - If dry_run is True, only returns the new name without copying
 
 **Existing or New**: New module
 
@@ -153,15 +158,16 @@ sequenceDiagram
     participant MetadataExtractor
     participant ChecksumCalculator
 
-    Main->>FileRenamer: Process files
-    FileRenamer-->>Main: Renamed files
+    Main->>FileRenamer: Process files with output dir
+    FileRenamer->>FileRenamer: Validate & rename
+    FileRenamer->>FileRenamer: Copy to output dir
+    FileRenamer-->>Main: Renamed files in output dir
     Main->>ManifestGenerator: Generate manifest
     ManifestGenerator->>MetadataExtractor: Extract metadata
     MetadataExtractor-->>ManifestGenerator: File metadata
     ManifestGenerator->>ChecksumCalculator: Calculate checksums
     ChecksumCalculator-->>ManifestGenerator: File checksums
     ManifestGenerator-->>Main: Complete manifest
-
 ```
 
 ## Error Handling and Logging

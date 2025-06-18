@@ -37,31 +37,30 @@ A Python-based tool for curating and managing data files according to the Cancer
 
 ## Usage
 
-The tool can be used to process biomarker and VCF reports. Here's how to use the main features:
+### Command Line Interface (CLI)
 
-1. File Renaming:
-   ```python
-   from src.file_management.file_renamer import FileRenamer
+The tool provides a command-line interface with the following commands:
+
+1. **Rename Files**
    
-   renamer = FileRenamer()
-   new_name = renamer.rename_vcf_file("path/to/your/file.vcf")
+   Rename files according to CTDC conventions:
+   ```bash
+   python -m src.main rename-files /path/to/input/directory
    ```
 
-2. Metadata Extraction:
-   ```python
-   from src.manifest.metadata_extractor import MetadataExtractor
-   
-   extractor = MetadataExtractor()
-   specimen_id = extractor.extract_specimen_id("filename.vcf")
+   Options:
+   - `--dry-run`: Show what would be renamed without making changes
+   - `--log-level`: Set logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+   - `--log-file`: Specify a log file path
+
+   Example with options:
+   ```bash
+   python3 -m src.main rename-files ./data/input/VCF_Report ./data/input/VCF_Report_rename
+
+   python3 -m src.main rename-files ./data/input/Biomarker_Report ./data/input/Biomarker_Report_rename
    ```
 
-3. Manifest Generation:
-   ```python
-   from src.manifest.manifest_generator import ManifestGenerator
-   
-   generator = ManifestGenerator()
-   generator.generate_manifest("input/directory", "output/directory")
-   ```
+
 
 ## Project Structure
 

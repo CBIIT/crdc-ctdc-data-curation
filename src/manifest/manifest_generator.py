@@ -4,8 +4,8 @@ Module for generating file transfer manifests.
 from pathlib import Path
 from typing import List, Dict
 import pandas as pd
-from ..file_management.checksum import ChecksumCalculator
-from .metadata_extractor import MetadataExtractor
+from src.file_management.checksum import ChecksumCalculator
+from src.manifest.metadata_extractor import MetadataExtractor
 
 class ManifestGenerator:
     """Class for generating file transfer manifests with required metadata."""
