@@ -1,3 +1,8 @@
+[![PyPI](https://img.shields.io/pypi/status/knowledge-repo.svg)]()
+[![license](https://img.shields.io/github/license/airbnb/knowledge-repo.svg)]()
+[![PyPI version](https://badge.fury.io/py/knowledge-repo.svg)](https://badge.fury.io/py/knowledge-repo)
+[![Python](https://img.shields.io/pypi/pyversions/knowledge-repo.svg?maxAge=2592000)](https://pypi.python.org/pypi/knowledge-repo)
+
 # CRDC-CTDC Data Curation Tool
 
 A Python-based tool for curating and managing data files according to the Cancer Research Data Commons (CRDC) and Clinical Trial Data Commons (CTDC) standards. This tool helps automate the process of file renaming, metadata extraction, and manifest generation for biomarker and VCF reports.
