@@ -46,12 +46,13 @@ class TestMetadataExtractor:
     @pytest.mark.parametrize("invalid_filename", [
         "invalid.vcf",
         "MSB-1234.vcf",  # Too few digits
-        "MSB-123456.vcf",  # Too many digits
+        "MSB-1234596.vcf",  # Too many digits
         "ABC-12345.vcf",  # Wrong prefix
     ])
     def test_extract_subject_id_invalid(self, extractor, invalid_filename):
         """Test subject ID extraction with invalid inputs raises ValueError."""
         with pytest.raises(ValueError) as exc_info:
+            print(f"Testing invalid filename: {invalid_filename}")
             extractor.extract_subject_id(invalid_filename)
         assert "Invalid subject ID format" in str(exc_info.value)
 

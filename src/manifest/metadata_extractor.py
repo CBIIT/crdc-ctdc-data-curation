@@ -39,9 +39,14 @@ class MetadataExtractor:
         Raises:
             ValueError: If subject ID cannot be extracted
         """
-        subject_id = filename[:9]  # Extract MSB-XXXXX
-        if not re.match(r'^MSB-\d{5}$', subject_id):
+        if len(filename) < 9:
+            raise ValueError(f"Filename too short to contain valid subject ID: {filename}")
+            
+        # First validate the pattern in the whole filename
+        if not re.match(r'^MSB-\d{5}(?!\d)', filename[:10]): 
             raise ValueError(f"Invalid subject ID format in filename: {filename}")
+            
+        subject_id = filename[:9]  # Extract MSB-XXXXX
         return subject_id
 
     def get_file_metadata(self, file_path: Path) -> Dict:

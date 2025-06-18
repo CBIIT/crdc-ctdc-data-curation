@@ -30,6 +30,10 @@ class ManifestGenerator:
             FileNotFoundError: If input directory doesn't exist
             IOError: If manifest cannot be written
         """
+        # Check if input directory exists
+        if not input_dir.exists() or not input_dir.is_dir():
+            raise FileNotFoundError(f"Input directory does not exist: {input_dir}")
+
         all_data = []
         
         # Process each file type

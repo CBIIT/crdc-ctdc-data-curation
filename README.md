@@ -50,12 +50,10 @@ The tool provides a command-line interface with the following commands:
 
    Options:
    - `--dry-run`: Show what would be renamed without making changes
-   - `--log-level`: Set logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
-   - `--log-file`: Specify a log file path
 
    Example with options:
    ```bash
-   python3 -m src.main rename-files ./data/input/VCF_Report ./data/input/VCF_Report_rename
+   python3 -m src.main rename-files --dry-run  ./data/input/VCF_Report ./data/input/VCF_Report_rename
 
    python3 -m src.main rename-files ./data/input/Biomarker_Report ./data/input/Biomarker_Report_rename
 
@@ -92,18 +90,4 @@ For verbose output:
 python -m pytest -v
 ```
 
-## Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run the tests
-5. Submit a pull request
-
-## License
-
-[Add your license information here]
-
-## Contact
-
-[Add contact information here]

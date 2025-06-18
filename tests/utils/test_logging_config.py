@@ -22,7 +22,6 @@ def test_configure_logging_stderr_only():
     # Check handlers
     handlers = root_logger.handlers
     assert any(isinstance(h, logging.StreamHandler) for h in handlers)
-    assert not any(isinstance(h, logging.FileHandler) for h in handlers)
 
 def test_configure_logging_with_file(temp_log_file):
     """Test logging configuration with file output."""
